@@ -8,6 +8,7 @@ class Game:
         pygame.display.set_caption("2D Platformer")  # set window name
         self.screen = pygame.display.set_mode((640, 480))  # create window
         self.clock = pygame.time.Clock()  # clock for frame rate
+        self.img = pygame.image.load("./assets/sprite.png")
 
     def run(self):
         while True:  # runs until quit
