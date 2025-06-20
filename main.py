@@ -1,5 +1,7 @@
-import pygame
 import sys
+
+import pygame
+
 
 class Game:
     def __init__(self):
@@ -13,6 +15,8 @@ class Game:
         self.sprite_pos = [160, 260]
         self.y_movement = [False, False]
         self.x_movement = [False, False]
+
+        self.collision_area = pygame.Rect(50, 50, 300, 50)
 
     def run(self):
         while True:  # runs until quit
@@ -45,7 +49,14 @@ class Game:
             self.sprite_pos[0] += (self.x_movement[1] - self.x_movement[0]) * 5
             self.screen.blit(self.sprite, self.sprite_pos)
 
+            sprite_r = pygame.Rect(*self.sprite_pos, *self.sprite.get_size())
+            if sprite_r.colliderect(self.collision_area):
+                pygame.draw.rect(self.screen, "#f38ba8", self.collision_area)
+            else:
+                pygame.draw.rect(self.screen, "#a6e3a1", self.collision_area)
+
             pygame.display.update()
             self.clock.tick(60)
+
 
 Game().run()
